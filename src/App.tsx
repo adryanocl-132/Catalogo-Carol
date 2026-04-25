@@ -125,14 +125,14 @@ export default function App() {
       <header 
         className={`fixed top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-50 transition-all duration-500 rounded-3xl border ${
           scrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-md border-slate-200 py-6 px-6' 
-          : 'bg-white shadow-sm border-slate-200 py-10 px-6 md:py-12'
+          ? 'bg-white/90 backdrop-blur-md shadow-md border-slate-200 py-3 px-6' 
+          : 'bg-white shadow-sm border-slate-200 py-4 px-6 md:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
             <div className="flex items-center">
-              <div className="h-28 w-80 md:w-[416px] flex items-center justify-center overflow-hidden group/logo relative p-2">
+              <div className="h-16 w-48 md:h-20 md:w-64 flex items-center justify-center overflow-hidden group/logo relative p-2">
                 <img 
                   src={brandLogo} 
                   alt="Logo Principal" 
@@ -164,7 +164,7 @@ export default function App() {
       </header>
 
       {/* Main Grid Content */}
-      <div className="max-w-7xl mx-auto mt-32 md:mt-40 space-y-4 md:space-y-6">
+      <div className="max-w-7xl mx-auto mt-28 md:mt-32 space-y-4 md:space-y-6">
         
         {/* Top Section: Hero + Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
