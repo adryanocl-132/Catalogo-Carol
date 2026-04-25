@@ -1,12 +1,25 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+// SECURITY: Use Helmet to secure Express apps by setting various HTTP headers
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "img-src": ["'self'", "data:", "https:", "http:"],
+      "script-src": ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+      "connect-src": ["'self'", "https://*.googleapis.com"],
+    },
+  },
+}));
 
 // Hostinger/Production: Ensure PORT is dynamic
 const PORT = process.env.PORT || 3000;
