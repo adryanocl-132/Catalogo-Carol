@@ -29,7 +29,7 @@ try {
   app.use(express.static(distPath));
 
   // Handle SPA routing: serve index.html for all non-file requests
-  app.get('*', (req, res) => {
+  app.get('*all', (req, res) => {
     const indexPath = path.join(distPath, 'index.html');
     if (fs.existsSync(indexPath)) {
       res.sendFile(indexPath);
