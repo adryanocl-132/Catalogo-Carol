@@ -19,6 +19,11 @@ if (!fs.existsSync(distPath)) {
   console.error(`ERROR: The directory "${distPath}" was not found. Please run "npm run build" first.`);
 }
 
+// Basic health check to ensure the process is responding to the host's manager
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 try {
   // Serve static files from the 'dist' directory
   app.use(express.static(distPath));
@@ -29,18 +34,18 @@ try {
     if (fs.existsSync(indexPath)) {
       res.sendFile(indexPath);
     } else {
-      res.status(404).send('Build files not found. Please ensure "npm run build" completed successfully.');
+      res.status(404).send('Application files not found. Please ensure the build completed successfully.');
     }
   });
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`>>> Production server is running on port ${PORT}`);
-    console.log(`>>> Serving files from: ${distPath}`);
+    console.log(`>>> Server is healthy and running on port ${PORT}`);
+    console.log(`>>> Static files path: ${distPath}`);
   }).on('error', (err) => {
-    console.error('SERVER ERROR during listen:', err);
+    console.error('SERVER ERROR:', err);
     process.exit(1);
   });
 } catch (error) {
-  console.error('CRITICAL STARTUP ERROR:', error);
+  console.error('BOOT ERROR:', error);
   process.exit(1);
 }
